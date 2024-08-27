@@ -5,7 +5,7 @@ export default function Navbar() {
   return (
     <>
     
-    <div className='bg-red-400 px-10 flex justify-between items-center md:bg-blue-600 lg:bg-green-600'  >
+    <div className='bg-red-400 px-10 flex justify-between items-center md:bg-yellow-600 lg:bg-green-600'  >
       {/* left */}
       <h2 className='text-white text-2xl'>Admin <span>LTE</span></h2>
 
