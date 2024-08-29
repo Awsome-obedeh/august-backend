@@ -15,22 +15,25 @@ const Register = () => {
         e.preventDefault()
         // hanlde form operation
         if(!firstname){
-            setErr("please fil in firstname")
-            setfirstnameErr(true)
+            setfirstnameErr("please fil in firstname")
+         
            
         }
-       else if(!lastname){
-            setErr("please fil in lastname")
-           
+        else{
+            setfirstnameErr(false)
         }
-         else if(!email){
-            setErr("please fil in email")
+        // if(!lastname){
+        //     setErr("please fil in lastname")
            
-        }
-        else if(!contact){
-            setErr("please fil in contact")
+        // }
+        //   if(!email){
+        //     setErr("please fil in email")
            
-        }
+        // }
+        //  if(!contact){
+        //     setErr("please fil in contact")
+           
+        // }
 
         console.log("form was submitted")
 
@@ -52,12 +55,12 @@ const Register = () => {
     }
   return (
     <form action="" onSubmit={submitHandler}>
-        {
+        {/* {
             err && (
 
                 <div className='bg-red-500 text-center w-full py-3 rounded-md'> {err}</div>
             ) 
-        }
+        } */}
 
     <div className='border shadow-lg rounded-md px-5 flex flex-col items-center justify-center h-screen w-full'>
         <div className='w-full mb-3'>
@@ -66,7 +69,7 @@ const Register = () => {
             {
                 firstnameErr && (
 
-                    <label className='text-red-500 text-semibold font-mono '>{err}</label>
+                    <label className='text-red-500 text-semibold font-mono '>{firstnameErr}</label>
                 )
             }
         </div> 
