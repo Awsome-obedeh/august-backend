@@ -33,7 +33,7 @@ export default  function Home() {
     
 
   return (
-    <div>
+    <div className="bg-stone-800 h-max w-full">
     
     <Navbar/>
     <Hero/>
