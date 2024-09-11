@@ -1,7 +1,12 @@
 "use client"
+import Loading from '@/app/loading'
+import { useRouter } from 'next/navigation'
+
 import React, { useState } from 'react'
 
 const Register = () => {
+    // assign the router variable
+    const router=useRouter()
 
     const [firstname, setFirstname]=useState('')
     const [lastname, setLastname]=useState('')
@@ -9,10 +14,12 @@ const Register = () => {
     const [contact, setContact]=useState('')
     const [firstnameErr,setfirstnameErr]=useState(false)
     const [err,setErr]=useState(false)
+    const [loading,setLoading]=useState(false)
 
     const submitHandler=async (e)=>{
         console.log(e)
         e.preventDefault()
+        setLoading(true)
         // hanlde form operation
         if(!firstname){
             setfirstnameErr("please fil in firstname")
@@ -22,18 +29,18 @@ const Register = () => {
         else{
             setfirstnameErr(false)
         }
-        // if(!lastname){
-        //     setErr("please fil in lastname")
+        if(!lastname){
+            setErr("please fil in lastname")
            
-        // }
-        //   if(!email){
-        //     setErr("please fil in email")
+        }
+          if(!email){
+            setErr("please fil in email")
            
-        // }
-        //  if(!contact){
-        //     setErr("please fil in contact")
+        }
+         if(!contact){
+            setErr("please fil in contact")
            
-        // }
+        }
 
         console.log("form was submitted")
 
@@ -46,7 +53,10 @@ const Register = () => {
             },
             // the format you are sending the request in must match the content-type
             body:JSON.stringify({firstname,lastname,email,contact})
-        })    
+        })  
+        console.log(res)  
+        // router the user to the login page
+        router.push('/login')
         }
         catch(e){
             console.log('something went wrong')
@@ -54,15 +64,16 @@ const Register = () => {
        
     }
   return (
-    <form action="" onSubmit={submitHandler}>
+      <form action="" onSubmit={submitHandler}>
         {/* {
             err && (
-
-                <div className='bg-red-500 text-center w-full py-3 rounded-md'> {err}</div>
+                
+            <div className='bg-red-500 text-center w-full py-3 rounded-md'> {err}</div>
             ) 
-        } */}
+            } */}
 
     <div className='border shadow-lg rounded-md px-5 flex flex-col items-center justify-center h-screen w-full'>
+          
         <div className='w-full mb-3'>
             <label htmlFor="" className='text-sm text-gray-500 font-semibold'>Firstname</label>
             <input  onChange={(e)=>setFirstname(e.target.value)} type="text"  className={` ${firstnameErr ? " border border-red-600": " " } w-full py-2 rounded-md border border-gray-500 block px-4` }placeholder='firstname'/>
@@ -98,7 +109,10 @@ const Register = () => {
          firstname
          
     }{lastname}
-        <button className='bg-green-600 text-white px-6 py-2 m-max rounded-lg '>Submit</button>
+
+    { loading ? (<div className="loader"></div>) :  
+    <button className='bg-green-600 text-white px-6 py-2 m-max rounded-lg  '>submit</button>}
+       
     </div>
 
     
