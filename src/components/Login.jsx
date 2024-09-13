@@ -1,7 +1,9 @@
 "use client"
+import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 
 const Login = () => {
+    const router=useRouter()
     const [email,setEmail]=useState('')
     const [password,setPassword]=useState('')
     const [err,setErr]=useState(false)
@@ -24,6 +26,13 @@ const Login = () => {
             setErr(true)
             setLoading(false)
         }
+
+        else if(res.status==200){
+            // if login is successfull, router the user to dashboard
+            router.replace('/dashboard')
+        }
+
+        
         
         console.log(res)
 
